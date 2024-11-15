@@ -539,7 +539,7 @@ footer a:hover {
         <h2>Hello, <span id="userEmail">[User's Email]</span>!</h2>
         <p>Delicious Recipes for Every Meal</p>
         <input type="text" class="search-bar" placeholder="Search for recipes...">
-        <button>Find Recipes</button>
+        <button id="searchButton">Find Recipes</button>
     </header>
 
 <nav>
@@ -658,6 +658,26 @@ console.error('Logout failed');
 } catch (error) {
 console.error('Error during logout:', error);
 }
+}
+// Wait for the page to load
+document.addEventListener('DOMContentLoaded', function () {
+    // Attach event listener to the search button
+    document.getElementById('searchButton').addEventListener('click', handleSearch);
+});
+
+function handleSearch() {
+    // Get the value from the search input field
+    const searchQuery = document.querySelector('.search-bar').value.trim();
+
+    if (searchQuery) {
+        // Perform search operation here
+        console.log('Searching for:', searchQuery);
+        
+        // Example: Redirect to search results page with query
+        window.location.href = `search-results.html?q=${encodeURIComponent(searchQuery)}`;
+    } else {
+        alert('Please enter a search term.');
+    }
 }
 </script>
 </body>
