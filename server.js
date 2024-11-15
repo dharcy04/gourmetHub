@@ -280,9 +280,9 @@ return res.status(400).json({ success: false, message: 'Invalid email format.' }
 }
 // Fetch user
 const user = await usersCollection.findOne({ emaildb: email });
-if (!user) {
-return res.status(400).json({ success: false, message: 'Invalid email or password.' });
-}
+        if (!user) {
+            return res.status(400).json({ success: false, message: 'Invalid email or password.' });
+        }
 // Account lockout check
 if (user.accountLockedUntil && user.accountLockedUntil > new Date()) {
 const remainingTime = Math.ceil((user.accountLockedUntil - new Date()) / 6000);
@@ -297,7 +297,9 @@ let invalidAttempts = (user.invalidLoginAttempts || 0) + 1;
 let updateFields = { invalidLoginAttempts: invalidAttempts };
 if (invalidAttempts >= 3) {
 // Lock account
-updateFields.accountLockedUntil = new Date(Date.now() + 1 * 60 * 1000);
+updateFields.accountLockedUntil = new Date(Date.now() + 3* 60 *
+
+1000);
 
 updateFields.invalidLoginAttempts = 10;
 await usersCollection.updateOne({ _id: user._id }, { $set: updateFields });
@@ -319,7 +321,7 @@ await usersCollection.updateOne(
 { $set: { invalidLoginAttempts: 0, accountLockedUntil: null, lastLoginTime: new Date() } }
 );
 req.session.userId = user._id;
-req.session.email = user.email;
+req.session.email = user.emaildb;
 req.session.role = user.role;
 req.session.studentIDNumber = user.studentIDNumber;
 await new Promise((resolve, reject) => {
