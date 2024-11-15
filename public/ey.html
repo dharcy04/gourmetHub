@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        body {
+            font-family: sans-serif;
+            background: linear-gradient(to right, #FF6347, #FFCD00); /* Tomato to yellow gradient */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background-image: url('pizza.jpg'); /* Replace with your food-themed image URL */
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        .container {
+            opacity: 0.9;
+            background: linear-gradient(to right, rgba(255, 165, 0, 0.8), rgba(255, 204, 0, 0.8)); /* Warm orange-yellow gradient */
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .form-box {
+            width: 100%;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #FFF;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .input-group {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .input-group label {
+            position: absolute;
+            top: 50%;
+            left: 15px;
+            transform: translateY(-50%);
+            color: #777;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 12px 15px;
+            padding-left: 40px; /* Space for icon */
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        .input-group input:focus {
+            outline: none;
+            border-color: #FF6347; /* Highlight color on focus */
+        }
+
+        button {
+            background: linear-gradient(to bottom right, #FF6347, #FFD700); /* Tomato to yellow gradient */
+            color: #fff;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 1.1rem;
+        }
+
+        button:hover {
+            background: linear-gradient(to bottom right, #FF4500, #FF8C00); /* Darker orange on hover */
+            color: yellow;
+        }
+
+        .back {
+            text-decoration: none;
+            color: #FFF;
+            text-align: center;
+            display: block;
+            margin-top: 1rem;
+        }
+
+        .back:hover {
+            text-decoration: underline;
+            color: red;
+        }
+
+        /* Responsive design adjustments */
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+                width: 90%;
+            }
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup Form</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back">Back</a>
+        <div class="form-box">
+            <h1>SignUp Form</h1>
+            <form id="signupForm">
+                <div class="input-group">
+                    <label for="email"><i class="fas fa-envelope"></i></label>
+                    <input type="email" id="email" placeholder="Enter Email" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="password"><i class="fas fa-lock"></i></label>
+                    <input type="password" id="password" placeholder="Create Password" required>
+                </div>
+                <div class="input-group">
+                    <label for="confirmPassword"><i class="fas fa-lock"></i></label>
+                    <input type="password" id="confirmPassword" placeholder="Retype Password" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="add_info"><i class="fas fa-user"></i></label>
+                    <input type="text" id="add_info" placeholder="Enter Fullname" required>
+                </div>
+                <button type="submit">SignUp</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const form = document.getElementById('signupForm');
+
+        form.addEventListener('submit', (event) => {
+            event.preventDefault(); // Prevent default form submission
+
+            // Get values from input fields
+            const add_info = document.getElementById('add_info').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+
+            // Basic validation: Check if passwords match
+            if (password !== confirmPassword) {
+                alert("Passwords don't match!");
+                document.getElementById('password').value = "";
+                document.getElementById('confirmPassword').value = "";
+                return;
+            }
+
+            // Example: Display a success message
+            alert('Signup successful!');
+            window.location.href = 'index.html';
+        });
+    </script>
+</body>
+</html>

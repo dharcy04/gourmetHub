@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+/* Overall body styling */
+body {
+    font-family: 'Arial', sans-serif;
+    background-image: url('fc.jpg'); /* Replace with your food-themed image URL */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    color: #333;
+}
+
+/* Container with food-inspired lighter gradient */
+.container {
+    background: linear-gradient(to right, rgba(255, 223, 186, 0.8), rgba(255, 159, 64, 0.7)); /* Soft light gradient resembling honey & orange */
+    border-radius: 15px;
+    padding: 40px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.3); /* Softer shadow for a lighter look */
+    backdrop-filter: blur(8px); /* Reduced blur for a clearer background */
+    width: 100%;
+    max-width: 450px;
+    position: relative;
+    z-index: 2;
+    text-align: center;
+}
+
+/* Heading styling */
+h1 {
+    font-size: 32px;
+    font-weight: 600;
+    margin-bottom: 30px;
+    letter-spacing: 1px;
+    color: #333;
+    text-transform: uppercase;
+}
+
+/* Styling for input groups */
+.input-group {
+    position: relative;
+    margin-bottom: 25px;
+}
+
+/* Label styling */
+.input-group label {
+    position: absolute;
+    top: 50%;
+    left: 15px;
+    transform: translateY(-50%);
+    color: #333;
+    font-size: 16px;
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+}
+
+/* Input field styling with lighter background */
+.input-group input {
+    width: 100%;
+    padding: 15px 20px;
+    padding-left: 45px;
+    border: 1px solid rgba(255, 255, 255, 0.5); /* Subtle border */
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.7); /* Lighter, more transparent background */
+    box-sizing: border-box;
+    font-size: 16px;
+    color: #333;
+    transition: all 0.3s ease;
+}
+
+/* Input focus effect */
+.input-group input:focus {
+    outline: none;
+    border-color: #FF6347; /* Tomato red when focused */
+    background: rgba(255, 255, 255, 0.9); /* Brighter on focus */
+}
+
+/* Floating effect for label when input is focused or filled */
+.input-group input:focus + label,
+.input-group input:not(:placeholder-shown) + label {
+    opacity: 1;
+    top: 5px;
+}
+
+/* Button styling with light food-inspired tones */
+button {
+    background: linear-gradient(to bottom right, #FF7F50, #FFD700); /* Light orange to yellow gradient */
+    color: #fff;
+    padding: 15px 20px;
+    border: none;
+    border-radius: 30px; /* Rounded button */
+    cursor: pointer;
+    width: 100%;
+    font-size: 18px;
+    font-weight: bold;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+/* Button hover effect */
+button:hover {
+    background: linear-gradient(to bottom right, #FF6347, #FF4500); /* Slightly darker on hover */
+    transform: translateY(-2px); /* Slight lift effect */
+    color: white;
+}
+
+/* Back link styling */
+.back {
+    text-decoration: none;
+    color: #FF6347; /* Tomato red */
+    font-size: 16px;
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+}
+
+.back:hover {
+    text-decoration: underline;
+    color: #FF4500; /* Darker red on hover */
+    opacity: 1;
+}
+
+/* Responsive design adjustments */
+@media (max-width: 600px) {
+    .container {
+        padding: 25px;
+        width: 90%;
+    }
+
+    h1 {
+        font-size: 28px;
+    }
+
+    .input-group input {
+        font-size: 14px;
+    }
+
+    button {
+        font-size: 16px;
+    }
+}
+
+       </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup Form - Foodie Edition</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back">Back</a>
+        <div class="form-box">
+            <h1>Foodie Signup</h1>
+            <form id="signupForm" action="http://localhost:3000/signup" method="post">
+                <div class="input-group">
+                    <label for="email"><i class="fas fa-envelope"></i></label>
+                    <input type="email" id="email" name="email" placeholder="Enter Email" required>
+                </div>
+                <div class="input-group">
+                    <label for="nickname"><i class="fas fa-user"></i></label>
+                    <input type="text" id="nickname" name="nickname" placeholder="Enter Nickname" required>
+                </div>
+                <div class="input-group">
+                    <label for="favoriteFood"><i class="fas fa-utensils"></i></label>
+                    <input type="text" id="favoriteFood" name="favoriteFood" placeholder="Enter Favorite Food" required>
+                </div>
+                <div class="input-group">
+                    <label for="password"><i class="fas fa-lock"></i></label>
+                    <input type="password" id="password" name="password" placeholder="Create Password" required>
+
+                </div>
+                <div class="input-group">
+                    <label for="confirmPassword"><i class="fas fa-lock"></i></label>
+                    <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password" required>
+                </div>
+                <button type="submit">Sign Up</button>
+            </form>
+        </div>
+    </div>
+    <script>
+        document.getElementById('signupForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent default form submission
+
+            // Get values from input fields
+            var email = document.getElementById('email').value.trim();
+            var nickname = document.getElementById('nickname').value.trim();
+            var favoriteFood = document.getElementById('favoriteFood').value.trim();
+            var password = document.getElementById('password').value.trim();
+            var confirmPassword = document.getElementById('confirmPassword').value.trim();
+
+            // Basic validation: Check if passwords match
+            if (password !== confirmPassword) {
+                alert("Passwords don't match!");
+                document.getElementById('password').value = "";
+                document.getElementById('confirmPassword').value = "";
+                return; 
+            }
+
+            // Send the form data to the server
+            fetch(this.action, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ 
+                    email: email, 
+                    nickname: nickname, 
+                    favoriteFood: favoriteFood, 
+                    password: password 
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert('Account created successfully! You can now log in.');
+                    window.location.href = 'index.html'; // Redirect to login page after successful registration
+                } else {
+                    alert(data.message);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('An error occurred. Please try again later.');
+            });
+        });
+    </script>
+</body>
+</html>
